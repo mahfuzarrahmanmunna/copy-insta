@@ -1,8 +1,6 @@
-// src/lib/dbConnect.js
-// CHANGED: Use { createPool } instead of default import
 import { createPool } from "mariadb";
 
-// Cache the connection pool globally to avoid creating multiple pools on hot reloads
+// Cache the connection pool globally to avoid creating multiple pools
 let pool = null;
 
 export async function dbConnect() {
@@ -19,21 +17,25 @@ export async function dbConnect() {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306,
-      connectionLimit: 5,
+      // INCREASED: 10 is safer for production to handle concurrent requests
+      connectionLimit: 10,
+      // ADDED: Reconnect automatically if connection is lost
+      acquireTimeout: 10000, // 10 seconds
+      // ADDED: Idle connections timeout (release them back to pool)
+      idleTimeout: 60000, // 1 minute
     };
 
-    // CHANGED: Call createPool directly
     pool = createPool(poolConfig);
 
-    // Optional: Test connection immediately to ensure credentials are correct
+    // Test connection immediately
     const conn = await pool.getConnection();
-    conn.release(); // Release the connection back to the pool
-
-    console.log("Connected to MariaDB successfully");
+    console.log("Connected to MariaDB successfully (Pool created)");
+    conn.release();
 
     return pool;
   } catch (error) {
     console.error("Error connecting to MariaDB:", error);
+    // In production, we might want to throw a more specific error or handle retry logic
     throw new Error("Failed to connect to the database");
   }
 }
