@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script"; // 1. Import the Script component
 import "./globals.css";
 import Providers from "./providers/Providers";
 
@@ -12,6 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// 2. Metadata comes first
 export const metadata = {
   // --- Basic Metadata ---
   title: {
@@ -33,13 +35,12 @@ export const metadata = {
   publisher: "Instagram",
 
   // --- Icons & Favicon ---
-  // Uses your existing favicon.webp in the public folder
   icons: {
     icon: "/favicon.webp",
     shortcut: "/favicon.webp",
     apple: "/favicon.webp",
   },
-  manifest: "/manifest.json", // You would need to create this file in public/ for PWA support
+  manifest: "/manifest.json",
 
   // --- Theme & Viewport ---
   themeColor: "#ffffff",
@@ -50,16 +51,14 @@ export const metadata = {
     userScalable: true,
   },
 
-  // --- Open Graph (Facebook, LinkedIn, etc.) ---
+  // --- Open Graph ---
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.instagram.com/", // Replace with your actual URL
+    url: "https://instagrrams.com/",
     siteName: "Instagram",
-    title: "Instagram",
     description:
-      "Create an account or log in to Instagram - A simple, fun & creative way to capture, edit & share photos, videos & messages with friends & family.",
-    // Replace this URL with a high-res image (1200x630px) for better link previews
+      "Create an account or log in to Instagram - Share what you're into with the people who get you.",
     images: [
       {
         url: "/favicon.webp",
@@ -76,17 +75,14 @@ export const metadata = {
     site: "@instagram",
     title: "Instagram",
     description:
-      "Create an account or log in to Instagram - A simple, fun & creative way to capture, edit & share photos, videos & messages with friends & family.",
+      "Create an account or log in to Instagram - Share what you're into with the people who get you.",
     images: ["/favicon.webp"],
   },
 
-  // --- App Links (Deep linking) ---
-  // These tell mobile devices to open your app if installed
+  // --- App Links ---
   alternates: {
-    canonical: "https://www.instagram.com/",
+    canonical: "https://instagrrams.com/",
   },
-  // Note: Next.js handles 'al:android:url', 'al:ios:url' via specific config or manual tags if needed.
-  // For standard SEO, the above is usually sufficient.
 };
 
 export default function RootLayout({ children }) {
@@ -98,6 +94,18 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <Providers>{children}</Providers>
+
+        {/* 3. Script Tag comes second (inside body) */}
+        <Script
+          id="custom-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Paste your raw JavaScript code here (e.g., Google Analytics)
+              console.log('Script loaded successfully!');
+            `,
+          }}
+        />
       </body>
     </html>
   );
