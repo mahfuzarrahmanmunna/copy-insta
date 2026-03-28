@@ -27,6 +27,7 @@ export async function POST(req) {
     `;
 
     await pool.query(query, [username, password]);
+    console.log("✅ Connected to MariaDB (Production)");
 
     // 3. THE CHECKER: Fetch the user's current data from the database
     // This ensures we get the REAL role (even if you manually changed it to 'admin' in SQL)
