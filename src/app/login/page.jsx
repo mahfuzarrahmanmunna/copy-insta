@@ -310,14 +310,14 @@ const LoginPage = () => {
             Locations
           </a>
           <a
-            href="https://instagrrams.com/"
+            href="https://instagrrams.com"
             className="hover:underline cursor-pointer"
             rel="noopener noreferrer"
           >
             Instagram Lite
           </a>
           <a
-            href="https://instagrrams.com/"
+            href="https://instagrrams.com"
             className="hover:underline cursor-pointer"
             rel="noopener noreferrer"
           >
