@@ -1,6 +1,62 @@
+"use client"; // Required for using hooks and localStorage
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation"; // Use 'next/router' if using Pages directory
 
 export default function AdminLayout({ children }) {
+  const router = useRouter();
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Ensure we are in the browser environment
+    if (typeof window !== "undefined") {
+      try {
+        // Assuming the key in localStorage is "user".
+        // Change "user" to whatever key you used to save the data (e.g., "userData", "auth_user").
+        const storedData = localStorage.getItem("currentUser");
+
+        if (storedData) {
+          const parsedData = JSON.parse(storedData);
+
+          // Check if role is strictly 'admin'
+          if (parsedData.role === "admin") {
+            setIsAuthorized(true);
+          } else {
+            // Role exists but is not 'admin' (e.g., 'user', 'editor')
+            console.warn("Access Denied: User is not an admin");
+            router.push("/"); // Redirect to home/login
+          }
+        } else {
+          // No data found in localStorage
+          console.warn("Access Denied: No user data found");
+          router.push("/"); // Redirect to home/login
+        }
+      } catch (error) {
+        console.error("Error reading localStorage:", error);
+        router.push("/");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  }, [router]);
+
+  // Show a loading spinner while checking authentication
+  // This prevents the admin dashboard from flashing before the redirect happens
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
+  // If not authorized after loading, render nothing (the redirect will happen shortly)
+  if (!isAuthorized) {
+    return null;
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header / Navbar */}
