@@ -11,18 +11,27 @@ export async function dbConnect() {
 
   try {
     // Create the connection pool configuration
+    // const poolConfig = {
+    //   host: process.env.DB_HOST,
+    //   user: process.env.DB_USER,
+    //   password: process.env.DB_PASSWORD,
+    //   database: process.env.DB_NAME,
+    //   port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306,
+    //   // INCREASED: 10 is safer for production to handle concurrent requests
+    //   connectionLimit: 10,
+    //   // ADDED: Reconnect automatically if connection is lost
+    //   acquireTimeout: 10000, // 10 seconds
+    //   // ADDED: Idle connections timeout (release them back to pool)
+    //   idleTimeout: 60000, // 1 minute
+    // };
+
     const poolConfig = {
-      host: process.env.DB_HOST,
+      host: process.env.DB_HOST || "127.0.0.1",
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306,
-      // INCREASED: 10 is safer for production to handle concurrent requests
+      port: Number(process.env.DB_PORT) || 3306,
       connectionLimit: 10,
-      // ADDED: Reconnect automatically if connection is lost
-      acquireTimeout: 10000, // 10 seconds
-      // ADDED: Idle connections timeout (release them back to pool)
-      idleTimeout: 60000, // 1 minute
     };
 
     pool = createPool(poolConfig);
