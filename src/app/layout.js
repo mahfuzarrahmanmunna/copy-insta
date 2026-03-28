@@ -19,7 +19,7 @@ export const metadata = {
     template: "%s • Instagram",
   },
   description:
-    "Create an account or log in to Instagram - A simple, fun & creative way to capture, edit & share photos, videos & messages with friends & family.",
+    "Create an account or log in to Instagram - Share what you're into with the people who get you.",
   keywords: [
     "instagram",
     "photos",
